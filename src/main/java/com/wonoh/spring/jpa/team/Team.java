@@ -6,14 +6,15 @@ import com.wonoh.spring.jpa.member.Member;
 
 import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 @Entity
-//@ToString(exclude = "members") 는 계속 참조하여 무한루프.. 왜안되지?
+//@ToString(exclude = "members") 는 추가해도 서로 계속 참조하여 무한루프.. 왜안되지?
 public class Team {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(name = "name",nullable = false)
