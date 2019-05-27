@@ -1,8 +1,6 @@
 package com.wonoh.spring.jpa.member;
 
 
-import com.wonoh.spring.jpa.team.Team;
-import com.wonoh.spring.jpa.team.TeamRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;

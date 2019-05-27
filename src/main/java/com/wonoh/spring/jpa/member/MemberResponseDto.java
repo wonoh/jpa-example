@@ -8,6 +8,8 @@ public class MemberResponseDto {
     private String name;
     private String email;
     private Team team;
+    private Gender gender;
+    private Weight weight;
 
     private MemberResponseDto(){};
 
@@ -16,6 +18,8 @@ public class MemberResponseDto {
         this.name = member.getName();
         this.email = member.getEmail();
         this.team = member.getTeam();
+        this.gender = member.getGender();
+        this.weight = member.getWeight();
 
     }
 
@@ -29,6 +33,14 @@ public class MemberResponseDto {
 
     public String getEmail() {
         return email;
+    }
+
+    public Gender getGender() {
+        return gender;
+    }
+
+    public Weight getWeight() {
+        return weight;
     }
 
     public Team getTeam() {

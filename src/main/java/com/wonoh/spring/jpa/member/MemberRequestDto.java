@@ -1,10 +1,12 @@
 package com.wonoh.spring.jpa.member;
 
 
-import com.fasterxml.jackson.annotation.JsonInclude;
 import com.wonoh.spring.jpa.team.Team;
 
-import javax.validation.constraints.*;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
 
 
 public class MemberRequestDto {
@@ -22,13 +24,29 @@ public class MemberRequestDto {
     @NotBlank(message = "팀이름을 작성해주세요.") @NotEmpty(message = "팀이름을 작성해주세요.")
     private String teamName;
 
+    @NotBlank(message = "성별을 작성해주세요.") @NotEmpty(message = "성별을 작성해주세요.")
+    private String gender;
+
+    @Min(value = 52,message = "52미만은 선수로 등록할수 없습니다.")
+    private int weight;
+
     private MemberRequestDto(){};
 
-    public MemberRequestDto(int age,String name,String email,String teamName){
+    public MemberRequestDto(int age,String name,String email,String teamName,String gender,int weight){
         this.age = age;
         this.name = name;
         this.email = email;
         this.teamName = teamName;
+        this.gender = gender;
+        this.weight = weight;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public int getWeight() {
+        return weight;
     }
 
     public int getAge() {
@@ -51,6 +69,34 @@ public class MemberRequestDto {
 
         Team team = new Team(teamName);
 
-        return new Member(name,age,email,team);
+        Gender gender;
+
+        if(this.gender.equals("남")){
+            gender = Gender.MAIL;
+        }else{
+            gender = Gender.FEMALE;
+        }
+
+        Weight weight;
+
+        if(this.weight >= 92){
+            weight = Weight.HEAVY;
+        }else if(this.weight >= 83){
+            weight = Weight.LIGHT_HEAVY;
+        }else if(this.weight >= 77){
+            weight = Weight.MIDDLE;
+        }else if(this.weight >= 70){
+            weight = Weight.WELTER;
+        }else if(this.weight >= 65){
+            weight = Weight.LIGHT;
+        }else if(this.weight >= 61){
+            weight = Weight.FEATHER;
+        }else if(this.weight >= 56){
+            weight = Weight.BANTAM;
+        }else{
+            weight = Weight.FLY;
+        }
+
+        return new Member(name,age,email,team,gender,weight);
     }
 }
