@@ -10,16 +10,16 @@ import javax.validation.constraints.*;
 public class MemberRequestDto {
 
 
-    @Min(0)
+    @Min(value = 0,message = "나이는 0보다 커야합니다.")
     private int age;
 
-    @NotBlank @NotEmpty
+    @NotBlank(message = "이름을 작성해주세요.") @NotEmpty(message = "이름을 작성해주세요.")
     private String name;
 
-    @NotBlank @NotEmpty  @Email
+    @NotBlank(message = "이메일을 작성해주세요.") @NotEmpty(message = "이메일을 작성해주세요.")  @Email(message = "메일의 양식을 지켜주세요.")
     private String email;
 
-    @NotBlank @NotEmpty
+    @NotBlank(message = "팀이름을 작성해주세요.") @NotEmpty(message = "팀이름을 작성해주세요.")
     private String teamName;
 
     private MemberRequestDto(){};
