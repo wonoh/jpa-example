@@ -3,12 +3,13 @@ package com.wonoh.spring.jpa.member;
 import com.wonoh.spring.jpa.team.Team;
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
 
 @Entity
 public class Member {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(name = "name",nullable = false)
@@ -17,28 +18,26 @@ public class Member {
     @Column(name = "age",nullable = false)
     private int age;
 
+    @Column(name = "email",nullable = false)
+    private String email;
+
 
     @ManyToOne(cascade = CascadeType.ALL)
     private Team team;
 
     private Member(){};
 
-    public Member(String name,int age){
+    public Member(String name,int age,String email,Team team){
         this.name = name;
         this.age = age;
-    }
-
-    public void setTeam(Team team){
-
+        this.email = email;
         this.team = team;
 
-        // 무한루프에 빠지지 않기 위함
         if(!team.getMembers().contains(this)){
-
             team.getMembers().add(this);
         }
-    }
 
+    }
 
     public Long getId() {
         return id;
@@ -54,5 +53,9 @@ public class Member {
 
     public Team getTeam() {
         return team;
+    }
+
+    public String getEmail() {
+        return email;
     }
 }
