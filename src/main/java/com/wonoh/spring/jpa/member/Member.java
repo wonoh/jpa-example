@@ -1,10 +1,13 @@
 package com.wonoh.spring.jpa.member;
 
 import com.wonoh.spring.jpa.team.Team;
+import org.springframework.data.annotation.CreatedDate;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 
 @Entity
+@Table(name = "member")
 public class Member {
 
     @Id
@@ -25,6 +28,11 @@ public class Member {
 
     @Enumerated(EnumType.STRING)
     private Weight weight;
+
+    @CreatedDate
+    @Column(name = "created_at",updatable = false)
+    private LocalDateTime createdAt;
+
 
     @ManyToOne(cascade = CascadeType.ALL)
     private Team team;
@@ -70,5 +78,8 @@ public class Member {
 
     public Weight getWeight() {
         return weight;
+    }
+    public LocalDateTime getCreatedAt() {
+        return createdAt;
     }
 }
