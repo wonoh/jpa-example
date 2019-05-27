@@ -50,11 +50,13 @@ public class MemberTest {
     public void 멤버등록() throws Exception {
 
         int age = 27;
-        String name = "원오";
-        String email = "wnjdsdh@naver.com";
-        String teamName = "아스날";
+        String name = "지원오";
+        String email = "wldnjsdh4412@naver.com";
+        String teamName = "팀매드";
+        String gender = "남";
+        int weight = 80;
 
-        MemberRequestDto dto = new MemberRequestDto(age, name, email, teamName);
+        MemberRequestDto dto = new MemberRequestDto(age, name, email, teamName,gender,weight);
 
         mockMvc.perform(post("/member")
                 .contentType(MediaType.APPLICATION_JSON_UTF8)
@@ -66,19 +68,24 @@ public class MemberTest {
                 .andExpect(jsonPath("email").value(email))
                 .andExpect(jsonPath("name").value(name))
                 .andExpect(jsonPath("age").value(age))
-                .andExpect(jsonPath("team").exists());
+                .andExpect(jsonPath("team").exists())
+                .andExpect(jsonPath("gender").value(Gender.MAIL.toString()))
+                .andExpect(jsonPath("weight").value(Weight.MIDDLE.toString()));
 
     }
 
     @Test
     public void 멤버등록_빈값_유효성검증실패() throws Exception {
 
-        int age = 27;
-        String name = "원오";
-        String email = " ";
-        String teamName = "아스날";
 
-        MemberRequestDto dto = new MemberRequestDto(age, name, email, teamName);
+        int age = 27;
+        String name = "지원오";
+        String email = "wldnjsdh4412naver.com";
+        String teamName = "팀매드";
+        String gender = "남";
+        int weight = 80;
+
+        MemberRequestDto dto = new MemberRequestDto(age, name, email, teamName,gender,weight);
 
         mockMvc.perform(post("/member")
                 .contentType(MediaType.APPLICATION_JSON_UTF8)
@@ -88,8 +95,8 @@ public class MemberTest {
                 .andDo(print())
                 .andExpect(status().isBadRequest())
                 .andExpect(jsonPath("message").exists())
-                .andExpect(jsonPath("code").exists())
-                .andExpect(jsonPath("status").exists())
+                .andExpect(jsonPath("code").value(ErrorCode.INPUT_VALUE_INVALID.getCode()))
+                .andExpect(jsonPath("status").value(400))
                 .andExpect(jsonPath("errors").exists());
 
     }
@@ -98,11 +105,13 @@ public class MemberTest {
     public void 멤버등록_이메일양식_유효성검증실패() throws Exception {
 
         int age = 27;
-        String name = "원오";
+        String name = "지원오";
         String email = "wldnjsdh4412naver.com";
-        String teamName = "아스날";
+        String teamName = "팀매드";
+        String gender = "남";
+        int weight = 80;
 
-        MemberRequestDto dto = new MemberRequestDto(age, name, email, teamName);
+        MemberRequestDto dto = new MemberRequestDto(age, name, email, teamName,gender,weight);
 
         mockMvc.perform(post("/member")
                 .contentType(MediaType.APPLICATION_JSON_UTF8)
