@@ -1,11 +1,12 @@
 plugins {
     id 'org.springframework.boot' version '2.1.5.RELEASE'
     id 'java'
+    id 'jacoco'
+    id 'com.github.kt3k.coveralls' version '2.8.3'
 }
 
 apply plugin: 'io.spring.dependency-management'
-apply plugin: 'com.github.kt3k.coveralls'
-apply plugin: 'jacoco'
+
 
 group = 'com.wonoh.spring'
 version = '0.0.1-SNAPSHOT'
@@ -16,9 +17,10 @@ configurations {
         extendsFrom annotationProcessor
     }
 }
-jacocoTestReport{
-    reports{
-        xml.enabled = true
+
+jacocoTestReport {
+    reports {
+        xml.enabled = true // coveralls plugin depends on xml format report
         html.enabled = true
     }
 }
@@ -35,9 +37,6 @@ dependencies {
     annotationProcessor 'org.projectlombok:lombok'
     // https://mvnrepository.com/artifact/com.h2database/h2
     testCompile group: 'com.h2database', name: 'h2', version: '1.4.199'
-    // https://mvnrepository.com/artifact/org.kt3k.gradle.plugin/coveralls-gradle-plugin
-    compile group: 'org.kt3k.gradle.plugin', name: 'coveralls-gradle-plugin', version: '2.8.2'
-
 
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }
