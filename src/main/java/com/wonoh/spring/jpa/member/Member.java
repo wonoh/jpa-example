@@ -1,13 +1,21 @@
 package com.wonoh.spring.jpa.member;
 
+import com.wonoh.spring.jpa.fight.Fight;
 import com.wonoh.spring.jpa.team.Team;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.CreatedDate;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "member")
+@NoArgsConstructor
+@Getter
 public class Member {
 
     @Id
@@ -33,12 +41,13 @@ public class Member {
     @Column(name = "created_at",updatable = false)
     private LocalDateTime createdAt;
 
+    @OneToMany(mappedBy = "member")
+    private List<Fight> fights = new ArrayList<>();
 
     @ManyToOne(cascade = CascadeType.ALL)
     private Team team;
 
-    private Member() {};
-
+    @Builder
     public Member(String name, int age, String email, Team team, Gender gender, Weight weight) {
         this.name = name;
         this.age = age;
@@ -53,33 +62,4 @@ public class Member {
 
     }
 
-    public Long getId() {
-        return id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public int getAge() {
-        return age;
-    }
-
-    public Team getTeam() {
-        return team;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-    public Gender getGender() {
-        return gender;
-    }
-
-    public Weight getWeight() {
-        return weight;
-    }
-    public LocalDateTime getCreatedAt() {
-        return createdAt;
-    }
 }

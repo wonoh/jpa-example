@@ -16,15 +16,13 @@ import java.util.List;
 @RequiredArgsConstructor
 public class MemberController {
 
-    private final MemberRepository memberRepository;
+    private final MemberService memberService;
 
 
     @PostMapping(value = "/member")
     public ResponseEntity saveMember(@RequestBody @Valid MemberRequestDto dto){
 
-
-        Member savedMember = memberRepository.save(dto.toEntity());
-
+        Member savedMember = memberService.saveMember(dto);
 
         return ResponseEntity.ok(new MemberResponseDto(savedMember));
 
@@ -37,6 +35,6 @@ public class MemberController {
         ids.add((long) 1);
         ids.add((long) 3);
         ids.add((long) 5);
-        return ResponseEntity.ok(memberRepository.findAll());
+        return ResponseEntity.ok(memberService.findAll());
     }
 }

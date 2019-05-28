@@ -1,7 +1,9 @@
 package com.wonoh.spring.jpa.member;
 
 
-import com.wonoh.spring.jpa.team.Team;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.Min;
@@ -9,6 +11,9 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 
 
+@Getter
+@NoArgsConstructor
+@Builder
 public class MemberRequestDto {
 
 
@@ -30,44 +35,8 @@ public class MemberRequestDto {
     @Min(value = 52,message = "52미만은 선수로 등록할수 없습니다.")
     private int weight;
 
-    private MemberRequestDto(){};
-
-    public MemberRequestDto(int age,String name,String email,String teamName,String gender,int weight){
-        this.age = age;
-        this.name = name;
-        this.email = email;
-        this.teamName = teamName;
-        this.gender = gender;
-        this.weight = weight;
-    }
-
-    public String getGender() {
-        return gender;
-    }
-
-    public int getWeight() {
-        return weight;
-    }
-
-    public int getAge() {
-        return age;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public String getTeamName() {
-        return teamName;
-    }
 
     public Member toEntity(){
-
-        Team team = new Team(teamName);
 
         Gender gender;
 
@@ -97,6 +66,12 @@ public class MemberRequestDto {
             weight = Weight.FLY;
         }
 
-        return new Member(name,age,email,team,gender,weight);
+        return Member.builder()
+                .age(age)
+                .email(email)
+                .gender(gender)
+                .weight(weight)
+                .name(name)
+                .build();
     }
 }
