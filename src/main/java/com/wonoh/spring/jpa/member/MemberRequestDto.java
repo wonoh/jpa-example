@@ -1,6 +1,8 @@
 package com.wonoh.spring.jpa.member;
 
 
+import com.wonoh.spring.jpa.team.Team;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -13,6 +15,7 @@ import javax.validation.constraints.NotEmpty;
 
 @Getter
 @NoArgsConstructor
+@AllArgsConstructor
 @Builder
 public class MemberRequestDto {
 
@@ -37,6 +40,10 @@ public class MemberRequestDto {
 
 
     public Member toEntity(){
+
+        Team team = Team.builder()
+                .name(teamName)
+                .build();
 
         Gender gender;
 
@@ -71,6 +78,7 @@ public class MemberRequestDto {
                 .email(email)
                 .gender(gender)
                 .weight(weight)
+                .team(team)
                 .name(name)
                 .build();
     }

@@ -2,6 +2,7 @@ package com.wonoh.spring.jpa.member;
 
 import com.wonoh.spring.jpa.fight.Fight;
 import com.wonoh.spring.jpa.team.Team;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -15,6 +16,7 @@ import java.util.List;
 @Entity
 @Table(name = "member")
 @NoArgsConstructor
+@AllArgsConstructor
 @Getter
 public class Member {
 
@@ -55,6 +57,7 @@ public class Member {
         this.team = team;
         this.gender = gender;
         this.weight = weight;
+        this.createdAt = LocalDateTime.now();
 
         if (!team.getMembers().contains(this)) {
             team.getMembers().add(this);
