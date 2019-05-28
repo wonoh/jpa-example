@@ -17,4 +17,4 @@ script: "./gradlew clean build"
 install: true
 
 before_install:
-  - chmod +x gradlew
+  - chmod +x mvnw
