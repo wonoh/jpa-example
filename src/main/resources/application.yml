@@ -1,0 +1,16 @@
+spring:
+  profiles:
+    active: local
+
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/jpa_example?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
+    username: wonoh
+    password: dnjsdh44
+
+  jpa:
+    hibernate:
+      ddl-auto: create
+    show-sql: true
+    generate-ddl: true
+

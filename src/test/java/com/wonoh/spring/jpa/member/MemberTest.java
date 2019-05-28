@@ -2,24 +2,18 @@ package com.wonoh.spring.jpa.member;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.wonoh.spring.jpa.common.ErrorCode;
-import com.wonoh.spring.jpa.team.Team;
 import com.wonoh.spring.jpa.team.TeamRepository;
-import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.transaction.annotation.Transactional;
 
-import static org.hamcrest.CoreMatchers.is;
-import static org.junit.Assert.assertThat;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
@@ -56,7 +50,14 @@ public class MemberTest {
         String gender = "남";
         int weight = 80;
 
-        MemberRequestDto dto = new MemberRequestDto(age, name, email, teamName,gender,weight);
+            MemberRequestDto dto = MemberRequestDto.builder()
+                    .age(age)
+                    .name(name)
+                    .email(email)
+                    .teamName(teamName)
+                    .gender(gender)
+                    .weight(weight)
+                    .build();
 
         mockMvc.perform(post("/member")
                 .contentType(MediaType.APPLICATION_JSON_UTF8)
@@ -80,12 +81,19 @@ public class MemberTest {
 
         int age = 27;
         String name = "지원오";
-        String email = "wldnjsdh4412naver.com";
-        String teamName = "팀매드";
+        String email = "wldnjsdh4412@naver.com";
+        String teamName = "";
         String gender = "남";
         int weight = 80;
 
-        MemberRequestDto dto = new MemberRequestDto(age, name, email, teamName,gender,weight);
+        MemberRequestDto dto = MemberRequestDto.builder()
+                .age(age)
+                .name(name)
+                .email(email)
+                .teamName(teamName)
+                .gender(gender)
+                .weight(weight)
+                .build();
 
         mockMvc.perform(post("/member")
                 .contentType(MediaType.APPLICATION_JSON_UTF8)
@@ -111,7 +119,14 @@ public class MemberTest {
         String gender = "남";
         int weight = 80;
 
-        MemberRequestDto dto = new MemberRequestDto(age, name, email, teamName,gender,weight);
+        MemberRequestDto dto = MemberRequestDto.builder()
+                .age(age)
+                .name(name)
+                .email(email)
+                .teamName(teamName)
+                .gender(gender)
+                .weight(weight)
+                .build();
 
         mockMvc.perform(post("/member")
                 .contentType(MediaType.APPLICATION_JSON_UTF8)
