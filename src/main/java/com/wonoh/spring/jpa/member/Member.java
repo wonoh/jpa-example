@@ -2,10 +2,7 @@ package com.wonoh.spring.jpa.member;
 
 import com.wonoh.spring.jpa.fight.Fight;
 import com.wonoh.spring.jpa.team.Team;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.springframework.data.annotation.CreatedDate;
 
 import javax.persistence.*;
@@ -15,7 +12,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "member")
-@NoArgsConstructor
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
 @AllArgsConstructor
 @Getter
 public class Member {
