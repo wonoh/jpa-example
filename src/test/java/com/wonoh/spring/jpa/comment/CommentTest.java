@@ -3,10 +3,8 @@ package com.wonoh.spring.jpa.comment;
 import com.wonoh.spring.jpa.common.BaseTest;
 import com.wonoh.spring.jpa.fight.Fight;
 import com.wonoh.spring.jpa.member.Member;
-import lombok.extern.slf4j.Slf4j;
 import org.junit.Before;
 import org.junit.Test;
-import org.slf4j.Logger;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -100,10 +98,5 @@ public class CommentTest extends BaseTest {
 
         return fightRepository.save(fight);
     }
-
-
-
-
-
 
 }
