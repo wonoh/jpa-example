@@ -17,7 +17,6 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
-//@ToString(exclude = "members") 는 추가해도 서로 계속 참조하여 무한루프.. 왜안되지?
 public class Team {
 
     @Id

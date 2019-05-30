@@ -1,5 +1,7 @@
 package com.wonoh.spring.jpa.member;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.wonoh.spring.jpa.fight.Fight;
 import com.wonoh.spring.jpa.team.Team;
 import lombok.*;
@@ -40,6 +42,7 @@ public class Member {
     @Column(name = "created_at",updatable = false)
     private LocalDateTime createdAt;
 
+    @JsonBackReference
     @OneToMany(mappedBy = "member")
     private List<Fight> fights = new ArrayList<>();
 

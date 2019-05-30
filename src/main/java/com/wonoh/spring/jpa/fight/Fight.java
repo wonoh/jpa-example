@@ -1,17 +1,22 @@
 package com.wonoh.spring.jpa.fight;
 
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.wonoh.spring.jpa.comment.Comment;
 import com.wonoh.spring.jpa.member.Member;
 import lombok.*;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "fight")
 @Getter
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 @AllArgsConstructor
+@ToString(exclude = "member")
 public class Fight {
 
     @Id
@@ -28,8 +33,11 @@ public class Fight {
     private int price;
 
     @ManyToOne(cascade = CascadeType.REMOVE)
-    @JoinColumn(name = "member_id")
+    @JsonManagedReference
     private Member member;
+
+    @OneToMany(mappedBy = "fight",fetch = FetchType.LAZY)
+    private List<Comment> comments = new ArrayList<>();
 
     @Column(name = "versus")
     private String versus;
@@ -42,6 +50,10 @@ public class Fight {
         this.price = price;
         this.member = member;
         this.versus = versus;
+
+        if(!member.getFights().contains(this)){
+            member.getFights().add(this);
+        }
     }
 
 }

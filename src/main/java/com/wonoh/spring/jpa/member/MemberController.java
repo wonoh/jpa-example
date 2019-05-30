@@ -9,8 +9,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.Valid;
-import java.util.ArrayList;
-import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
@@ -31,10 +29,6 @@ public class MemberController {
     @GetMapping(value = "/members")
     public ResponseEntity getMembers(){
 
-        List<Long> ids = new ArrayList<>();
-        ids.add((long) 1);
-        ids.add((long) 3);
-        ids.add((long) 5);
         return ResponseEntity.ok(memberService.findAll());
     }
 }
