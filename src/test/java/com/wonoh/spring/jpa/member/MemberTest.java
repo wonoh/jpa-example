@@ -1,6 +1,7 @@
 package com.wonoh.spring.jpa.member;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.wonoh.spring.jpa.common.BaseTest;
 import com.wonoh.spring.jpa.common.ErrorCode;
 import com.wonoh.spring.jpa.team.TeamRepository;
 import org.junit.Test;
@@ -23,25 +24,8 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 
-@RunWith(SpringRunner.class)
-@SpringBootTest
-@AutoConfigureMockMvc
-@ActiveProfiles("test")
-@TestPropertySource("classpath:application-test.properties")
-@Transactional
-public class MemberTest {
 
-    @Autowired
-    MemberRepository memberRepository;
-
-    @Autowired
-    MockMvc mockMvc;
-
-    @Autowired
-    TeamRepository teamRepository;
-
-    @Autowired
-    ObjectMapper objectMapper;
+public class MemberTest extends BaseTest {
 
 
     @Test
