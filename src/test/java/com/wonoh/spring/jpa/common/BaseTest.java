@@ -28,7 +28,6 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 @ActiveProfiles("test")
 @TestPropertySource("classpath:application-test.properties")
 @Transactional
-@Slf4j
 public abstract class BaseTest {
 
     @Autowired

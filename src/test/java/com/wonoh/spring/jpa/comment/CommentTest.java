@@ -15,14 +15,11 @@ import java.util.List;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 
-@Slf4j
+
 public class CommentTest extends BaseTest {
 
     private Member member;
 
-    public static Logger getLog() {
-        return log;
-    }
 
     @Before
     public void createMember() throws Exception{
@@ -81,7 +78,6 @@ public class CommentTest extends BaseTest {
         Fight fightAfterSaveComment = fightRepository.findById(fight.getId()).get();
 
         List<Comment> commentInFight = fightAfterSaveComment.getComments();
-        log.info("파이트댓글정보{}",commentInFight);
 
         assertThat(commentInFight.get(0).getId(),is(comment.getId()));
         assertThat(commentInFight.get(1).getId(),is(comment1.getId()));
@@ -89,9 +85,6 @@ public class CommentTest extends BaseTest {
 
 
 
-    }
-    private Member findMemberById(){
-        return memberRepository.findById(member.getId()).get();
     }
 
 
