@@ -33,7 +33,6 @@ public class Fight {
     private int price;
 
     @ManyToOne(cascade = CascadeType.REMOVE)
-    @JsonManagedReference
     private Member member;
 
     @OneToMany(mappedBy = "fight",fetch = FetchType.LAZY)

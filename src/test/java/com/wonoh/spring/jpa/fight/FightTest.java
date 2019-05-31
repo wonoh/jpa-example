@@ -15,11 +15,12 @@ import static org.junit.Assert.assertThat;
 public class FightTest extends BaseTest {
 
 
-    private Member member = super.member;
+    private Member member;
 
     @Before
     public void createMember() throws Exception {
         super.createMember();
+        member = super.member;
     }
 
     @Test

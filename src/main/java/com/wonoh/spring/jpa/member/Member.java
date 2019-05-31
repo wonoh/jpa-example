@@ -42,8 +42,7 @@ public class Member {
     @Column(name = "created_at",updatable = false)
     private LocalDateTime createdAt;
 
-    @JsonBackReference
-    @OneToMany(mappedBy = "member")
+    @OneToMany(mappedBy = "member",orphanRemoval = true)
     private List<Fight> fights = new ArrayList<>();
 
     @ManyToOne(cascade = CascadeType.ALL)
