@@ -81,8 +81,6 @@ public class CommentTest extends BaseTest {
         assertThat(commentInFight.get(1).getId(),is(comment1.getId()));
         assertThat(commentInFight.get(2).getId(),is(comment2.getId()));
 
-
-
     }
 
 
