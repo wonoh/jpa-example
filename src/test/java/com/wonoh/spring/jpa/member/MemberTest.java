@@ -5,6 +5,10 @@ import com.wonoh.spring.jpa.common.ErrorCode;
 import org.junit.Test;
 import org.springframework.http.MediaType;
 
+import java.util.List;
+
+import static org.hamcrest.CoreMatchers.is;
+import static org.junit.Assert.assertThat;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
@@ -114,6 +118,16 @@ public class MemberTest extends BaseTest {
                 .andExpect(jsonPath("code").value(ErrorCode.INPUT_VALUE_INVALID.getCode()))
                 .andExpect(jsonPath("status").value(400))
                 .andExpect(jsonPath("errors").exists());
+
+    }
+    @Test
+    public void querydsl_기본기능() throws Exception {
+        createMember();
+
+        List<Member> members = memberRepositorySupport.findAll();
+
+        assertThat(members.size(),is(1));
+        assertThat(members.get(0).getName(),is("지원오"));
 
     }
 

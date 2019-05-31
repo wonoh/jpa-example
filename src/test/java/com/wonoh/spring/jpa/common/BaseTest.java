@@ -6,8 +6,10 @@ import com.wonoh.spring.jpa.comment.CommentRepository;
 import com.wonoh.spring.jpa.fight.FightRepository;
 import com.wonoh.spring.jpa.member.Member;
 import com.wonoh.spring.jpa.member.MemberRepository;
+import com.wonoh.spring.jpa.member.MemberRepositorySupport;
 import com.wonoh.spring.jpa.member.MemberRequestDto;
 import com.wonoh.spring.jpa.team.TeamRepository;
+import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -19,6 +21,10 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
+import static org.hamcrest.CoreMatchers.is;
+import static org.junit.Assert.assertThat;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 
 @RunWith(SpringRunner.class)
@@ -47,6 +53,9 @@ public abstract class BaseTest {
     @Autowired
     protected FightRepository fightRepository;
 
+    @Autowired
+    protected MemberRepositorySupport memberRepositorySupport;
+
     protected Member member;
 
     public void createMember() throws Exception{
@@ -74,5 +83,8 @@ public abstract class BaseTest {
         );
         member = memberRepository.findAll().get(0);
     }
+
+
+
 
 }
