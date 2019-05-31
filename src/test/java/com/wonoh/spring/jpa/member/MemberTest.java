@@ -121,13 +121,24 @@ public class MemberTest extends BaseTest {
 
     }
     @Test
-    public void querydsl_기본기능() throws Exception {
+    public void querydsl_모든멤버조회() throws Exception {
         createMember();
 
         List<Member> members = memberRepositorySupport.findAll();
 
         assertThat(members.size(),is(1));
         assertThat(members.get(0).getName(),is("지원오"));
+
+    }
+
+    @Test
+    public void querydsl_멤버아이디_조회() throws Exception {
+        createMember();
+
+        Member member = memberRepositorySupport.findById(1L);
+
+        assertThat(member.getAge(),is(27));
+        assertThat(member.getName(),is("지원오"));
 
     }
 

@@ -25,6 +25,15 @@ public class MemberRepositorySupport extends QuerydslRepositorySupport {
 
     }
 
+    public Member findById(Long id){
+
+        return queryFactory
+                .selectFrom(member)
+                .where(member.id.eq(id))
+                .fetchOne();
+    }
+
+
 
 
 }

@@ -12,6 +12,7 @@ import java.util.List;
 public class MemberService {
 
     private final MemberRepository memberRepository;
+    private final MemberRepositorySupport memberRepositorySupport;
 
 
     @Transactional
@@ -22,6 +23,6 @@ public class MemberService {
 
 
     public List<Member> findAll() {
-        return memberRepository.findAll();
+        return memberRepositorySupport.findAll();
     }
 }
